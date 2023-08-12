@@ -18,9 +18,9 @@
 
 首先编译lib/tranz.cs。这一文件的用途详见lib目录下的readme。假设编译完成后该可执行文件的路径为`C:/a/SHX8800.exe`
 
-然后编译main.go。
+然后编译main.go。请把SHX8800.exe放在pkg/filetools下，在编译过程中需要使用。
 
-编译完成后，可以把SHX8800.exe放在main.exe同一目录中，直接运行 `main.exe` 或使用`main.exe --dep-path C:/a/SHX8800.exe  `指定目录。
+编译完成后，直接运行 `main.exe` 或使用`main.exe --dep-path C:/a/SHX8800.exe  `指定目录。
 
 ### 直接运行
 
