@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/sydneyowl/shx8800-config-editor/internal/radio"
+	"golang.org/x/text/encoding/simplifiedchinese"
 	"os"
 	"os/exec"
 	"runtime"
@@ -38,7 +39,8 @@ func ParseData(exePath string, configPath string) (*radio.ClassTheRadioData, err
 		DtmfData:     radio.CreateDTMFData(),
 		OtherImfData: radio.CreateOIMFData(),
 	}
-	err = json.Unmarshal(out, configs)
+	decodeBytes, _ := simplifiedchinese.GB18030.NewDecoder().Bytes(out)
+	err = json.Unmarshal(decodeBytes, configs)
 	if err != nil {
 		return nil, err
 	}

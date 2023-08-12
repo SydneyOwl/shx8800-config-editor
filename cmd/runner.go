@@ -158,6 +158,8 @@ func mainRunner() {
 			os.Exit(0)
 		case "s":
 			jsonstring, err := json.Marshal(configs)
+			out := jsonstring
+			//out, _ := simplifiedchinese.GB18030.NewEncoder().Bytes(jsonstring)
 			if err != nil {
 				slog.Errorf("无法反序列：%v", err)
 				return
@@ -172,7 +174,7 @@ func mainRunner() {
 			id := uuid.New().String()[0:12] + ".dat"
 			saveto = filepath.Join(saveto, id)
 			slog.Trace(saveto)
-			err = filetools.WriteBackData(pathExe, saveto, string(jsonstring))
+			err = filetools.WriteBackData(pathExe, saveto, string(out))
 			if err != nil {
 				slog.Errorf("无法保存：%v", err)
 				return
