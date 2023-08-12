@@ -34,7 +34,8 @@ func mainRunner() {
 				slog.Debug(err)
 				return
 			}
-			slog.Info("释放成功！请重启程序")
+			slog.Info("释放成功！请重启程序，按下回车确认")
+			_, _ = fmt.Scanln()
 			return
 		}
 	} else {
@@ -101,7 +102,7 @@ func mainRunner() {
 						}
 						goto wait
 					case "i":
-						fmt.Printf("请输入要在哪一个信道后插入信道（插入信道号）")
+						fmt.Printf("请输入要在哪一个信道前插入信道（插入信道号）")
 						channel := "e"
 						_, _ = fmt.Scanln(&channel)
 						targetArr, err := AskForDetail()
