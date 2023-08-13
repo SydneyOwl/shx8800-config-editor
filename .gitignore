@@ -7,3 +7,10 @@
 .cat
 *.exe
 *.dat
+*.sln
+*.exec
+*.mrOwl
+*.sydney
+dist/
+lib/bin
+lib/obj

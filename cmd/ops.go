@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/google/uuid"
+	"github.com/gookit/slog"
 	"github.com/jedib0t/go-pretty/v6/table"
 	"github.com/sydneyowl/shx8800-config-editor/internal/radio"
 	"os"
@@ -131,7 +132,7 @@ func displayChannels(ChannelData [128][]string) {
 				start = i
 			}
 			if i == len(ChannelData)-1 {
-				processedChan = append(processedChan, []string{"跳过信道" + strconv.Itoa(start) + "-" + strconv.Itoa(len(ChannelData))})
+				processedChan = append(processedChan, []string{"跳过信道" + strconv.Itoa(start) + "-" + strconv.Itoa(len(ChannelData)-1)})
 			}
 		} else {
 			if emptyCount != 0 {
@@ -193,6 +194,18 @@ func RemoveAllEmpty(configs *radio.ClassTheRadioData) {
 func AddChannel(configs *radio.ClassTheRadioData, pos string, data [14]string) error {
 	for i, v := range configs.ChannelData {
 		if v[0] == pos {
+			if !isChannelEmpty(configs.ChannelData[127]) {
+				fmt.Println("信道127不为空！继续操作将移除信道127，是否需要复制信道127？输入y确认")
+				var need string
+				_, _ = fmt.Scanln(&need)
+				if need == "y" {
+					if err := copyChannel(*configs, "127"); err != nil {
+						slog.Warnf("复制失败")
+					} else {
+						slog.Info("复制成功")
+					}
+				}
+			}
 			cache := configs.ChannelData[:]
 			tmp := append([][]string{}, cache[i:]...)
 			cache = append(cache[0:i], data[:])
@@ -203,7 +216,9 @@ func AddChannel(configs *radio.ClassTheRadioData, pos string, data [14]string) e
 			}
 			cache = append(cache, tmp...)
 			for j := range configs.ChannelData {
-				configs.ChannelData[j] = cache[j]
+				if j < 128 {
+					configs.ChannelData[j] = cache[j]
+				}
 			}
 			return nil
 		}

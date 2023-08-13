@@ -1,3 +1,5 @@
+//go:build release
+
 package filetools
 
 import (
@@ -5,6 +7,8 @@ import (
 	"errors"
 	"os"
 )
+
+var Build = "release"
 
 //go:embed SHX8800
 var SHX8800_executable []byte

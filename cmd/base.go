@@ -40,7 +40,9 @@ var BaseCmd = &cobra.Command{
 func init() {
 	BaseCmd.PersistentFlags().BoolVar(&Verbose, "verbose", false, "打印啰嗦的日志")
 	BaseCmd.PersistentFlags().BoolVar(&Vverbose, "vverbose", false, "打印超级啰嗦的日志")
-	BaseCmd.Flags().BoolVar(&ReleaseDep, "release-dep", false, "释放依赖的C#文件")
-	BaseCmd.Flags().StringVar(&DepPath, "dep-path", "", "C#依赖所在的路径。不指定则自动释放")
-	BaseCmd.Flags().StringVar(&ConfigPath, "dat-path", "", "DAT文件所在的路径 不指定则在shell里问")
+	if filetools.Build == "release" {
+		BaseCmd.Flags().BoolVar(&ReleaseDep, "release-dep", false, "释放依赖的C#文件")
+	}
+	BaseCmd.Flags().StringVar(&DepPath, "dep-path", "", "C#依赖所在的路径")
+	BaseCmd.Flags().StringVar(&ConfigPath, "dat-path", "", "DAT文件所在的路径")
 }
