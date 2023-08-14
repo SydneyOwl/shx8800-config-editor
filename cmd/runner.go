@@ -23,6 +23,7 @@ func mainRunner() {
 	slog.Info("检查文件完整性...")
 	if !filetools.IsFileExist(configPath) {
 		slog.Fatal("文件路径有误！")
+		_, _ = fmt.Scanln()
 		return
 	}
 	pathExe := filetools.GetCSPath()
@@ -36,6 +37,7 @@ func mainRunner() {
 			err := filetools.ReleaseFile()
 			if err != nil {
 				slog.Fatalf("无法释放依赖！")
+				_, _ = fmt.Scanln()
 				slog.Debug(err)
 				return
 			}

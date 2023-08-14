@@ -1,7 +1,7 @@
 # README
 ![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/SydneyOwl/shx8800-config-editor/build8800.yml?style=for-the-badge)
 ![go_version](https://img.shields.io/badge/Go-1.20.0-brightgreen?style=for-the-badge)
-![.net_version](https://img.shields.io/badge/dotnet-7.0.400-brightgreen?style=for-the-badge)
+![.net_version](https://img.shields.io/badge/dotnet-2.0.x-brightgreen?style=for-the-badge)
 
 [![downloads](https://img.shields.io/github/downloads/SydneyOwl/shx8800-config-editor/total)](https://github.com/SydneyOwl/shx8800-config-editor/releases?style=for-the-badge)
 [![downloads@latest](https://img.shields.io/github/downloads/SydneyOwl/shx8800-config-editor/latest/total)](https://github.com/SydneyOwl/shx8800-config-editor/releases/latest?style=for-the-badge) 
@@ -9,7 +9,7 @@
 
 该工具用于调整森海克斯8800官方写频工具生成文件的信道信息。
 
-理论上该工具可在Linux/macOS/Windows上使用，但仅在Windows 10/ Windows 7上测试通过。其他操作系统尚未验证。
+理论上该工具可在Linux/macOS/Windows上使用，但仅在Windows 10/ Windows 8上测试通过。其他操作系统尚未验证。
 
 官方写频文件无法调整信道顺序以及批量删除空信道，这一工具提供了这些功能。
 

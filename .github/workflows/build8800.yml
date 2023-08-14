@@ -9,9 +9,6 @@ jobs:
   goreleaser:
     runs-on: windows-latest
     steps:
-      - name: Set output
-        id: vars
-        run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
       -
         name: Checkout
         uses: actions/checkout@v3

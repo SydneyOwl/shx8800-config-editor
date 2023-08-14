@@ -2,6 +2,7 @@ package cmd
 
 import (
 	_ "embed"
+	"fmt"
 	"github.com/gookit/slog"
 	"github.com/spf13/cobra"
 	"github.com/sydneyowl/shx8800-config-editor/config"
@@ -28,6 +29,7 @@ var BaseCmd = &cobra.Command{
 			err := filetools.ReleaseFile()
 			if err != nil {
 				slog.Fatalf("无法释放依赖！")
+				_, _ = fmt.Scanln()
 				return
 			}
 			slog.Info("释放成功！")
