@@ -1,7 +1,7 @@
 # README
 ![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/SydneyOwl/shx8800-config-editor/build8800.yml?style=for-the-badge)
-![go_version](https://img.shields.io/badge/Go-1.20.0-brightgreen?style=for-the-badge)
-![.net_version](https://img.shields.io/badge/dotnet-2.0.x-brightgreen?style=for-the-badge)
+![go_version](https://img.shields.io/badge/Go-1.20.4-brightgreen?style=for-the-badge)
+![.net_version](https://img.shields.io/badge/dotnet-7.0.400-brightgreen?style=for-the-badge)
 
 [![downloads](https://img.shields.io/github/downloads/SydneyOwl/shx8800-config-editor/total)](https://github.com/SydneyOwl/shx8800-config-editor/releases?style=for-the-badge)
 [![downloads@latest](https://img.shields.io/github/downloads/SydneyOwl/shx8800-config-editor/latest/total)](https://github.com/SydneyOwl/shx8800-config-editor/releases/latest?style=for-the-badge) 
