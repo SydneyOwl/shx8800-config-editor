@@ -12,20 +12,8 @@ import (
 )
 
 func mainRunner() {
-	var configPath string
+	var specifyConfigPath string
 	var configs *radio.ClassTheRadioData
-	if ConfigPath == "" {
-		fmt.Print("请输入.dat文件路径:")
-		_, _ = fmt.Scanln(&configPath)
-	} else {
-		configPath = ConfigPath
-	}
-	slog.Info("检查文件完整性...")
-	if !filetools.IsFileExist(configPath) {
-		slog.Fatal("文件路径有误！")
-		_, _ = fmt.Scanln()
-		return
-	}
 	pathExe := filetools.GetCSPath()
 	if DepPath == "" {
 		if filetools.Build == "dev" {
@@ -48,7 +36,24 @@ func mainRunner() {
 	} else {
 		pathExe = DepPath
 	}
-	configs, err := filetools.ParseData(pathExe, configPath)
+	if ConfigPath == "" {
+		fmt.Print("请输入.dat文件路径:")
+		_, _ = fmt.Scanln(&specifyConfigPath)
+	} else {
+		specifyConfigPath = ConfigPath
+	}
+	slog.Info("检查文件完整性...")
+	if !filetools.IsFileExist(specifyConfigPath) {
+		slog.Fatal("文件路径有误！")
+		_, _ = fmt.Scanln()
+		return
+	}
+	if !filetools.IsFileExist(pathExe) {
+		slog.Fatal("C#文件路径有误！")
+		_, _ = fmt.Scanln()
+		return
+	}
+	configs, err := filetools.ParseData(pathExe, specifyConfigPath)
 	if err != nil {
 		slog.Errorf("解析失败：%v", err)
 		return
