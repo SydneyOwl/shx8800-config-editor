@@ -12,16 +12,26 @@ go mod tidy
 REM 386
 set GOARCH=386
 go build -tags="dev"
-move /Y shx8800-config-editor.exe tmp\shx8800-config-editor-dev_%1_windows_386.exe
+if "%1" neq "refs/heads/master" (
+    move /Y shx8800-config-editor.exe tmp\shx8800-config-editor-dev_%1_windows_386.exe
+)
 copy /Y tmp\SHX8800_x86.exe pkg\filetools\SHX8800
+
 go build -tags="release"
-move /Y shx8800-config-editor.exe tmp\shx8800-config-editor-release_%1_windows_386.exe
+if "%1" neq "refs/heads/master" (
+    move /Y shx8800-config-editor.exe tmp\shx8800-config-editor-release_%1_windows_386.exe
+)
 del pkg\filetools\SHX8800
 
 REM 64
 set GOARCH=amd64
 go build -tags="dev"
-move /Y shx8800-config-editor.exe tmp\shx8800-config-editor-dev_%1_windows_amd64.exe
+if "%1" neq "refs/heads/master" (
+    move /Y shx8800-config-editor.exe tmp\shx8800-config-editor-dev_%1_windows_amd64.exe
+)
 copy /Y tmp\SHX8800_x64.exe pkg\filetools\SHX8800
+
 go build -tags="release"
-move /Y shx8800-config-editor.exe tmp\shx8800-config-editor-release_%1_windows_amd64.exe
+if "%1" neq "refs/heads/master" (
+    move /Y shx8800-config-editor.exe tmp\shx8800-config-editor-release_%1_windows_amd64.exe
+)

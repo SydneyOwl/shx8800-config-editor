@@ -30,7 +30,7 @@ jobs:
       -
         name: Run Script
         run:
-          .github/workflows/build/build.bat ${{ steps.vars.outputs.tag }}
+          .github/workflows/build/build.bat ${{ github.ref_name }}
 
       - name: Release
         uses: softprops/action-gh-release@v1
