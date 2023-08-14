@@ -68,6 +68,7 @@ func ShowCopiedChannel() {
 		}
 		t.AppendRow(tmp)
 	}
+	t.SetStyle(table.StyleColoredBright)
 	t.Render()
 }
 
@@ -156,6 +157,7 @@ func displayChannels(ChannelData [128][]string) {
 		}
 		t.AppendRow(tmp)
 	}
+	t.SetStyle(table.StyleColoredBright)
 	t.Render()
 }
 func ClearChannel(configs *radio.ClassTheRadioData, chanNo string) error {
