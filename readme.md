@@ -1,10 +1,11 @@
 # README
+![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/SydneyOwl/shx8800-config-editor/build8800.yml?style=for-the-badge)
+![go_version](https://img.shields.io/badge/Go-1.20.0-brightgreen?style=for-the-badge)
+![.net_version](https://img.shields.io/badge/dotnet-7.0.400-brightgreen?style=for-the-badge)
 
-[![downloads](https://img.shields.io/github/downloads/SydneyOwl/shx8800-config-editor/total)](https://github.com/SydneyOwl/shx8800-config-editor/releases)
-[![downloads@latest](https://img.shields.io/github/downloads/SydneyOwl/shx8800-config-editor/latest/total)](https://github.com/SydneyOwl/shx8800-config-editor/releases/latest) 
-![](https://img.shields.io/github/v/tag/sydneyowl/shx8800-config-editor?label=version&style=flat-square) 
-![go_version](https://img.shields.io/badge/Go-1.20.0-brightgreen)
-![.net_version](https://img.shields.io/badge/dotnet-7.0.400-brightgreen)
+[![downloads](https://img.shields.io/github/downloads/SydneyOwl/shx8800-config-editor/total)](https://github.com/SydneyOwl/shx8800-config-editor/releases?style=for-the-badge)
+[![downloads@latest](https://img.shields.io/github/downloads/SydneyOwl/shx8800-config-editor/latest/total)](https://github.com/SydneyOwl/shx8800-config-editor/releases/latest?style=for-the-badge) 
+![](https://img.shields.io/github/v/tag/sydneyowl/shx8800-config-editor?label=version&style=flat-square?style=for-the-badge) 
 
 该工具用于调整森海克斯8800官方写频工具生成文件的信道信息。
 
@@ -32,9 +33,9 @@
 
 ### 直接运行
 
-也可以直接下载release中的编译产物，双击运行`main.exe`，按照指示操作即可。
+也可以直接下载release中的编译产物(shx8800-config-editor-release_xxx_.exe)，直接运行"shx8800-config-editor-release_xxx_.exe",按照指示操作。
 
-更多功能，请使用`main.exe --help`
+更多功能，请使用`shx8800-config-editor-release_xxx_.exe --help`
 
 ## 其他...
 

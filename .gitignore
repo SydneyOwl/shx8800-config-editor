@@ -14,3 +14,4 @@
 dist/
 lib/bin
 lib/obj
+tmp
