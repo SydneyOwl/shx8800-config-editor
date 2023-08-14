@@ -29,6 +29,7 @@ func mainRunner() {
 	if DepPath == "" {
 		if filetools.Build == "dev" {
 			slog.Fatalf("未指定依赖包位置！请使用--dep-path指定！")
+			_, _ = fmt.Scanln()
 			return
 		}
 		if !filetools.IsFileExist(pathExe) {
