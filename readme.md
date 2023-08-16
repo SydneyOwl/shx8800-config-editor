@@ -3,6 +3,7 @@
 ![go_version](https://img.shields.io/badge/Go-1.20.4-brightgreen?style=for-the-badge)
 ![.net_version](https://img.shields.io/badge/dotnet-7.0.400-brightgreen?style=for-the-badge)
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/sydneyowl/shx8800-config-editor)](https://goreportcard.com/report/github.com/sydneyowl/shx8800-config-editor)
 [![downloads](https://img.shields.io/github/downloads/SydneyOwl/shx8800-config-editor/total)](https://github.com/SydneyOwl/shx8800-config-editor/releases?style=for-the-badge)
 [![downloads@latest](https://img.shields.io/github/downloads/SydneyOwl/shx8800-config-editor/latest/total)](https://github.com/SydneyOwl/shx8800-config-editor/releases/latest?style=for-the-badge) 
 ![](https://img.shields.io/github/v/tag/sydneyowl/shx8800-config-editor?label=version&style=flat-square?style=for-the-badge) 
