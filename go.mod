@@ -7,7 +7,7 @@ require (
 	github.com/gookit/slog v0.5.4
 	github.com/jedib0t/go-pretty/v6 v6.4.6
 	github.com/spf13/cobra v1.7.0
-	golang.org/x/text v0.11.0
+	golang.org/x/text v0.12.0
 )
 
 require (
