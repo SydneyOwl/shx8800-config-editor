@@ -34,7 +34,7 @@ jobs:
         name: Run Script
         if: startsWith(github.ref, 'refs/tags/')
         run:
-          .github/workflows/build/build.bat ${{ github.ref_name }}
+          .github/workflows/build/build.bat
 
       - name: Release
         uses: softprops/action-gh-release@v1

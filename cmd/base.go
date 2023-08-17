@@ -11,19 +11,31 @@ import (
 )
 
 var (
-	Verbose    = false
-	Vverbose   = false
-	ReleaseDep = false
-	DepPath    = ""
-	ConfigPath = ""
+	Verbose      = false
+	Vverbose     = false
+	ReleaseDep   = false
+	PrintVersion = false
+	DepPath      = ""
+	ConfigPath   = ""
 )
 
+func printVer() {
+	fmt.Println("SHX8800 dat editor")
+	fmt.Printf("Version: %s\n", config.VER)
+	fmt.Printf("Commit: %s\n", config.COMMIT)
+	fmt.Printf("Build Time: %s\n", config.BUILDTIME)
+}
+
 var BaseCmd = &cobra.Command{
-	Use:     "SHX8800_EDITOR",
-	Short:   "SHX8800_EDITOR",
-	Version: config.VER,
-	Long:    `SHX8800_EDITOR - COMMAND-LINE EDITOR`,
+	Use:   "SHX8800_EDITOR",
+	Short: "SHX8800_EDITOR",
+	//Version: config.VER,
+	Long: `SHX8800_EDITOR - SHX8800 dat editor`,
 	Run: func(cmd *cobra.Command, args []string) {
+		if PrintVersion {
+			printVer()
+			return
+		}
 		logger.InitLog(Verbose, Vverbose)
 		if ReleaseDep {
 			err := filetools.ReleaseFile()
@@ -42,6 +54,7 @@ var BaseCmd = &cobra.Command{
 func init() {
 	BaseCmd.PersistentFlags().BoolVar(&Verbose, "verbose", false, "打印啰嗦的日志")
 	BaseCmd.PersistentFlags().BoolVar(&Vverbose, "vverbose", false, "打印超级啰嗦的日志")
+	BaseCmd.PersistentFlags().BoolVar(&PrintVersion, "version", false, "打印软件版本信息")
 	if filetools.Build == "release" {
 		BaseCmd.Flags().BoolVar(&ReleaseDep, "release-dep", false, "释放依赖的C#文件")
 	}
