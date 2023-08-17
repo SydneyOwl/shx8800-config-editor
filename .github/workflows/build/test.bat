@@ -1,11 +1,9 @@
 @echo off
 md tmp
-cd lib
-dotnet publish -c Release -r win-x86 /p:PublishSingleFile=true
-move /Y bin\Release\net7.0\win-x86\publish\SHX8800.exe ..\tmp\SHX8800_x86.exe
-dotnet publish -c Release -r win-x64 /p:PublishSingleFile=true
-move bin\Release\net7.0\win-x64\publish\SHX8800.exe ..\tmp\SHX8800_x64.exe
-rmdir /S /Q bin obj
+cd tmp
+for /f "tokens=1,* delims=:" %%A in ('curl -ks https://api.github.com/repos/SydneyOwl/shx8800-plugin/releases/latest ^| find "browser_download_url"') do (
+    curl -kOL %%B
+)
 cd ..
 go mod tidy
 

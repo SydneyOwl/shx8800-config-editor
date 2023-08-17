@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	_ "embed"
 	"fmt"
 	"github.com/gookit/slog"
 	"github.com/spf13/cobra"
