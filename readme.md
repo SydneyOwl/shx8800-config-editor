@@ -25,7 +25,8 @@
 
 如果有go和C#基础，可以选择手动编译。
 
-首先拉取并且编译https://github.com/SydneyOwl/shx8800-plugin。这一文件的用途详见lib目录下的readme。假设编译完成后该可执行文件的路径为 `C:/a/SHX8800.exe`
+首先拉取并且编译https://github.com/SydneyOwl/shx8800-plugin
+这一文件的用途详见lib目录下的readme。假设编译完成后该可执行文件的路径为 `C:/a/SHX8800.exe`
 
 然后编译main.go。使用以下命令：**go build -tags="dev"**
 
@@ -40,6 +41,8 @@
 更多功能，请使用 `shx8800-config-editor-release_xxx_.exe --help`
 
 ## 其他...
+
+[使用视频](https://www.bilibili.com/video/BV1jz4y1g7Wo)
 
 在成功保存编辑结果后，可以在官方写频软件中打开输出的.dat文件，确认结果无误后，照常写入对讲机即可。
 
