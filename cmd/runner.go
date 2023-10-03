@@ -61,8 +61,8 @@ func mainRunner() {
 		slog.Info("解析成功")
 	}
 	for {
-		//C  C
 	swh:
+		lastStep := make([]radio.ClassTheRadioData, 0)
 		printMenu()
 		choose := "q"
 		_, _ = fmt.Scanln(&choose)
@@ -75,12 +75,23 @@ func mainRunner() {
 				_, _ = fmt.Scanln(&choice)
 				for {
 					switch choice {
+					case "r":
+						if len(lastStep) == 0 {
+							slog.Warn("无法撤销！")
+							goto wait
+						}
+						backto := lastStep[len(lastStep)-1]
+						*configs = backto
+						lastStep = lastStep[:len(lastStep)-1]
+						slog.Notice("已经撤销")
+						goto wait
 					case "p":
 						displayChannels((*configs).ChannelData)
 						goto wait
 					case "b":
 						goto swh
 					case "c":
+						backupConfig(configs, &lastStep)
 						fmt.Printf("请输入要清空的信道号")
 						channel := "e"
 						_, _ = fmt.Scanln(&channel)
@@ -91,11 +102,31 @@ func mainRunner() {
 							slog.Info("清空成功！")
 						}
 						goto wait
+					case "z":
+						backupConfig(configs, &lastStep)
+						fmt.Printf("请输入要清空的信道范围，例如1,2-4,9代表清空1,2,3,4,9: ")
+						channel := "e"
+						_, _ = fmt.Scanln(&channel)
+						channelRangesd, err := parseChannel(channel)
+						if err != nil {
+							slog.Warn("无法解析：", err)
+							goto wait
+						}
+						err = BatchClear(configs, channelRangesd)
+						if err != nil {
+							slog.Warn("无法清空：", err)
+							slog.Info("信道未做更改")
+						} else {
+							slog.Info("清空成功！")
+						}
+						goto wait
 					case "k":
+						backupConfig(configs, &lastStep)
 						RemoveAllEmpty(configs)
 						slog.Info("删除成功！")
 						goto wait
 					case "e":
+						backupConfig(configs, &lastStep)
 						fmt.Print("请输入要修改的信道号：")
 						chanNo := "e"
 						_, _ = fmt.Scanln(&chanNo)
@@ -114,6 +145,7 @@ func mainRunner() {
 						}
 						goto wait
 					case "i":
+						backupConfig(configs, &lastStep)
 						fmt.Printf("请输入要在哪一个信道前插入信道（插入信道号）")
 						channel := "e"
 						_, _ = fmt.Scanln(&channel)
@@ -145,6 +177,7 @@ func mainRunner() {
 						ShowCopiedChannel()
 						goto wait
 					case "v":
+						backupConfig(configs, &lastStep)
 						fmt.Print("复制缓冲区中的哪个信道？")
 						from := "e"
 						_, _ = fmt.Scanln(&from)

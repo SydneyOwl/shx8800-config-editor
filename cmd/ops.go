@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"bytes"
+	"encoding/gob"
 	"errors"
 	"fmt"
 	"github.com/google/uuid"
@@ -9,6 +11,7 @@ import (
 	"github.com/sydneyowl/shx8800-config-editor/internal/radio"
 	"os"
 	"strconv"
+	"strings"
 )
 
 var copiedChannel = make([][]string, 0)
@@ -102,8 +105,10 @@ func printSubMenu() {
 	t.SetOutputMirror(os.Stdout)
 	t.AppendHeader(table.Row{"操作码", "操作"})
 	t.AppendRows([]table.Row{
+		{"r", "撤销上一步更改"},
 		{"p", "打印信道"},
 		{"c", "清空信道"},
+		{"z", "批量清空信道"},
 		{"i", "插入信道"},
 		{"e", "更改信道"},
 		{"k", "删除所有空信道"},
@@ -192,6 +197,17 @@ func RemoveAllEmpty(configs *radio.ClassTheRadioData) {
 	}
 	configs.ChannelData = *che
 }
+func BatchClear(configs *radio.ClassTheRadioData, chanClearRange []string) error {
+	tmp := *configs
+	backup := &tmp
+	for _, v := range chanClearRange {
+		if err := ClearChannel(configs, v); err != nil {
+			configs = backup
+			return err
+		}
+	}
+	return nil
+}
 
 func AddChannel(configs *radio.ClassTheRadioData, pos string, data [14]string) error {
 	for i, v := range configs.ChannelData {
@@ -258,4 +274,56 @@ func displayModify() {
 		})
 	}
 	t.Render()
+}
+
+func parseChannel(channel string) ([]string, error) {
+	spliter := strings.Split(channel, ",")
+	chanss := make([]string, 0)
+	if len(spliter) == 0 {
+		return nil, errors.New("长度不能为空")
+	}
+	for index, v := range spliter {
+		if v == "" {
+			continue
+		}
+		if strings.Contains(v, "-") {
+			tmp := strings.Split(v, "-")
+			if len(tmp) > 2 {
+				return nil, errors.New("输入错误: 分隔符有错误")
+			}
+			for _, v1 := range tmp {
+				if _, err := strconv.Atoi(v1); err != nil {
+					return nil, errors.New("输入错误：输入需为数字")
+				}
+			}
+			rge1, _ := strconv.Atoi(tmp[0])
+			rge2, _ := strconv.Atoi(tmp[1])
+			if rge1 > rge2 {
+				return nil, errors.New("输入错误：开始大于结束")
+			}
+			start := rge1
+			for start <= rge2 {
+				chanss = append(chanss, strconv.Itoa(start))
+				start += 1
+			}
+		} else {
+			if _, err := strconv.Atoi(v); err != nil {
+				return nil, errors.New("输入错误：输入需为数字")
+			}
+			chanss = append(chanss, spliter[index])
+		}
+	}
+	return chanss, nil
+}
+func dCopyByGob(src, dst interface{}) error {
+	var buffer bytes.Buffer
+	if err := gob.NewEncoder(&buffer).Encode(src); err != nil {
+		return err
+	}
+	return gob.NewDecoder(&buffer).Decode(dst)
+}
+func backupConfig(config *radio.ClassTheRadioData, listBack *[]radio.ClassTheRadioData) {
+	backup := new(radio.ClassTheRadioData)
+	_ = dCopyByGob(config, backup)
+	*listBack = append(*listBack, *backup)
 }
