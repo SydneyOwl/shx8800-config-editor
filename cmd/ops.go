@@ -198,11 +198,8 @@ func RemoveAllEmpty(configs *radio.ClassTheRadioData) {
 	configs.ChannelData = *che
 }
 func BatchClear(configs *radio.ClassTheRadioData, chanClearRange []string) error {
-	tmp := *configs
-	backup := &tmp
 	for _, v := range chanClearRange {
 		if err := ClearChannel(configs, v); err != nil {
-			configs = backup
 			return err
 		}
 	}

@@ -115,7 +115,6 @@ func mainRunner() {
 						err = BatchClear(configs, channelRangesd)
 						if err != nil {
 							slog.Warn("无法清空：", err)
-							slog.Info("信道未做更改")
 						} else {
 							slog.Info("清空成功！")
 						}
