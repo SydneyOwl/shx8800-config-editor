@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/google/uuid v1.3.1
 	github.com/gookit/slog v0.5.4
-	github.com/jedib0t/go-pretty/v6 v6.4.7
+	github.com/jedib0t/go-pretty/v6 v6.4.8
 	github.com/spf13/cobra v1.7.0
 	golang.org/x/text v0.12.0
 )
