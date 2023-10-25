@@ -1,6 +1,7 @@
 package entrance
 
 import (
+	"bufio"
 	"encoding/json"
 	"fmt"
 	"github.com/google/uuid"
@@ -9,6 +10,7 @@ import (
 	"github.com/sydneyowl/shx8800-config-editor/pkg/filetools"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 func mainRunner() {
@@ -38,10 +40,13 @@ func mainRunner() {
 	}
 	if ConfigPath == "" {
 		fmt.Print("请输入.dat文件路径:")
-		_, _ = fmt.Scanln(&specifyConfigPath)
+		reader := bufio.NewReader(os.Stdin)
+		specifyConfigPath, _ = reader.ReadString('\n')
+		specifyConfigPath = strings.TrimSpace(specifyConfigPath)
 	} else {
 		specifyConfigPath = ConfigPath
 	}
+	specifyConfigPath = strings.Trim(specifyConfigPath, "\"")
 	slog.Info("检查文件完整性...")
 	if !filetools.IsFileExist(specifyConfigPath) {
 		slog.Fatal("文件路径有误！")
