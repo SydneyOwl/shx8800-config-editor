@@ -214,20 +214,22 @@ func mainRunner() {
 				slog.Errorf("无法反序列：%v", err)
 				return
 			}
-			fmt.Print("请输入要保存到的目标目录")
+			fmt.Print("请输入要保存到的目标目录，输入英文句号（.）保存到当前目录：")
 			saveto := "./"
-			_, _ = fmt.Scanln(&saveto)
+			reader := bufio.NewReader(os.Stdin)
+			saveto, _ = reader.ReadString('\n')
+			saveto = strings.TrimSpace(saveto)
+			saveto = strings.Trim(saveto, "\"")
 			if !filetools.IsFileExist(saveto) {
 				slog.Warn("文件路径有误！")
 				continue
 			}
 			id := uuid.New().String()[0:12] + ".dat"
 			saveto = filepath.Join(saveto, id)
-			slog.Trace(saveto)
 			err = filetools.WriteBackData(pathExe, saveto, string(out))
 			if err != nil {
 				slog.Errorf("无法保存：%v", err)
-				return
+				continue
 			}
 			slog.Infof("保存成功！文件名为：%s", saveto)
 		default:
