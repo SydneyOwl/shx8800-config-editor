@@ -42,7 +42,7 @@
 
 ## 其他...
 
-[使用视频](https://www.bilibili.com/video/BV1jz4y1g7Wo)
+[使用视频](https://www.bilibili.com/video/BV1Nu411F7Gk/)
 
 在成功保存编辑结果后，可以在官方写频软件中打开输出的.dat文件，确认结果无误后，照常写入对讲机即可。
 
