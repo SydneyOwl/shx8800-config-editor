@@ -15,6 +15,8 @@
 
 官方写频文件无法调整信道顺序以及批量删除空信道，这一工具提供了这些功能。
 
+**更改信道功能已集成在[修改后的写频软件中](https://github.com/SydneyOwl/shx8x00-freq-writer-enhanced)，欢迎下载体验！**
+
 ### 功能
 
 ![image-20230812143556294](./md_assets/readme/image-20230812143556294.png)
