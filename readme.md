@@ -9,13 +9,13 @@
 [![downloads@latest](https://img.shields.io/github/downloads/SydneyOwl/shx8800-config-editor/latest/total)](https://github.com/SydneyOwl/shx8800-config-editor/releases/latest?style=for-the-badge)
 ![](https://img.shields.io/github/v/tag/sydneyowl/shx8800-config-editor?label=version&style=flat-square?style=for-the-badge)
 
+**更改信道功能已集成在[修改后的写频软件中](https://github.com/SydneyOwl/senhaix-freq-writer-enhanced)，本项目不再维护**
+
 该工具用于调整森海克斯8800官方写频工具生成文件的信道信息。
 
 理论上该工具可在Linux/macOS/Windows上使用，但仅在Windows 10/ Windows 8上测试通过。其他操作系统尚未验证。
 
 官方写频文件无法调整信道顺序以及批量删除空信道，这一工具提供了这些功能。
-
-**更改信道功能已集成在[修改后的写频软件中](https://github.com/SydneyOwl/senhaix-freq-writer-enhanced)，欢迎下载体验！**
 
 ### 功能
 
